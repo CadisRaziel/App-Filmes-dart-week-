@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "463243541343",
+    "project_id": "vhs-films-6f988",
+    "storage_bucket": "vhs-films-6f988.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463243541343:android:d0cfcc6456bab0e4dc54ea",
+        "android_client_info": {
+          "package_name": "br.com.films.vhs_filmes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463243541343-gceq2jvm279fj1ct62kghqpsbch0c0uh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.films.vhs_filmes",
+            "certificate_hash": "a6e93226cd693400c8e4befe45fe65a5e06c2e08"
+          }
+        },
+        {
+          "client_id": "463243541343-ffmabvdnblfhl6qkn330nth0isgr50rt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbHPlcUPyuHPkUk1GywB3gAvTHsIknS70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463243541343-ffmabvdnblfhl6qkn330nth0isgr50rt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
