@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:animated_card/animated_card.dart';
 import 'package:vhs_filmes/shared/themes/app_imags.dart';
+import 'package:vhs_filmes/shared/widgets/social_button.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -23,7 +25,25 @@ class SplashPage extends StatelessWidget {
                 ),
                 fit: BoxFit.cover),
           ),
-          child: Image.asset(AppImages.logo),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [              
+              Image.asset(AppImages.logo),
+              const SizedBox(height: 50,),
+              AnimatedCard(
+                direction: AnimatedCardDirection.left,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 15),
+                  child: GoogleLoginButton(
+                    image: AppImages.google,
+                    text: "Entrar com Google",
+                    onTap: () {},
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
