@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:animated_card/animated_card.dart';
 import 'package:vhs_filmes/shared/themes/app_imags.dart';
-import 'package:vhs_filmes/shared/widgets/social_button.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,37 +28,7 @@ class SplashPage extends StatelessWidget {
                 ),
                 fit: BoxFit.cover),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [              
-              Image.asset(AppImages.logo),
-              const SizedBox(height: 50,),
-              AnimatedCard(
-                direction: AnimatedCardDirection.left,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 15),
-                  child: GoogleLoginButton(
-                    image: AppImages.google,
-                    text: "Entrar com Google",
-                    onTap: () {},
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5,),
-              AnimatedCard(
-                direction: AnimatedCardDirection.right,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 15),
-                  child: GoogleLoginButton(
-                    image: AppImages.facebook,
-                    text: "Entrar com Facebook",
-                    onTap: () {},
-                  ),
-                ),
-              ),
-            ],
-          ),
+          child: Image.asset(AppImages.logo),
         ),
       ),
     );

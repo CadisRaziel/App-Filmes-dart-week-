@@ -26,8 +26,7 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
-dependencies:
-  animated_card: 2.0.0
+dependencies:  
   cupertino_icons: ^1.0.2
   firebase_auth: 3.1.1
   firebase_core: 1.6.0
