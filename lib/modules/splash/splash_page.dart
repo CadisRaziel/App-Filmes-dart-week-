@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vhs_filmes/shared/themes/app_imags.dart';
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+class SplashPage extends StatelessWidget {
 
-  @override
-  State<SplashPage> createState() => _SplashPageState();
-}
+ const SplashPage({Key? key}) : super(key: key);
 
-class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

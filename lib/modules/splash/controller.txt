@@ -1,0 +1,3 @@
+//*Controller alimenta a tela, tem as ações, trabalha os dados
+//*A tela chama a controller para fazer alguma coisa, a controller faz alguma coisa e atualiza a tela
+//*Ou seja a controller trabalha os dados, e a pagina apresenta os dados..  

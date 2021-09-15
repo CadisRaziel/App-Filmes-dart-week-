@@ -1,0 +1,32 @@
+
+CICLO DE VIDA STATEFULL
+
+//*initState -> para fazer algo antes de inicializar a nossa pagina
+  @override
+  void initState() {
+    super.initState();
+    //*Para fazer algo depois que a pagina ja foi construida no BuildContext abaixo eu utilizo esse metodo
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) { });
+  }
+
+  //*dispose -> quando sai da nossa página !
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+
+  Repare que o proprio flutter tem como nativo o ciclo de vida acima !!!!
+  Porém o GetxController nos da um ciclo de vida igual mais com nomeclaturas diferentes
+  Utilizando esse ciclo de vida no GetxController ele inibi a necessidade de colocar no STATEFULL
+  com isso colocaremos o ciclo de vida dentro do controller 'GetxController' e ele faz esse gerenciamento
+
+  /*
+    onClose(){} //* -> quando a pagina foi fechada
+    onDelete => //* -> hora que deleta o cara do guiche de instancia
+    onInit(){} //* -> antes de carregar nossa tela
+    onReady(){} //* -> depois do build for construido ele chama o onReady (depois que a tela for construida)
+    onStart => //* -> hora que starta a aplicação
+  
+  */
+

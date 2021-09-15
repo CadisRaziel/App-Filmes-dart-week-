@@ -1,0 +1,15 @@
+CICLO DE VIDA DO STATEFULL !!
+
+//*initState -> para fazer algo antes de inicializar a nossa pagina
+  @override
+  void initState() {
+    super.initState();
+    //*Para fazer algo depois que a pagina ja foi construida no BuildContext abaixo eu utilizo esse metodo
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) { });
+  }
+
+  //*dispose -> quando sai da nossa página !
+  @override
+  void dispose() {
+    super.dispose();
+  }

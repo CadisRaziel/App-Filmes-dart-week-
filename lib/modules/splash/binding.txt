@@ -1,0 +1,11 @@
+o que o binding faz:
+o Get tem o controlle da nossa pagina quando ele carrega e quando nao carrega no splashpage(ele diz quando vai carregar ou não)
+e da mesma forma ele pode dizer tambem que ele tem que executar uma classe antes de executar o SplashPage, que é o tal do binding
+eu vou colocar o binding la no splash_module
+
+ou seja, antes do get carregar o 'splashpage' ele vai executar primeiro o 'splashBinding', dentro do binding temos o metodo 'dependencies'
+com isso o 'dependencies' vai guardar todas as instancia que o GetxController deve procurar antes de executar a pagina
+
+resumindo
+antes de executar a pagina o get entende e fala 'opa' tem um binding para executar, calma ai pagina que eu ja vou te carregar,
+ó guiche (o guiche é o binding) toma a instancia de 'Get.put(SplashController())', se não tiver mais nenhuma pode carregar a pagina 
