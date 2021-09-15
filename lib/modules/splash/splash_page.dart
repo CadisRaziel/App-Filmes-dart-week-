@@ -42,6 +42,18 @@ class SplashPage extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 5,),
+              AnimatedCard(
+                direction: AnimatedCardDirection.right,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 15),
+                  child: GoogleLoginButton(
+                    image: AppImages.facebook,
+                    text: "Entrar com Facebook",
+                    onTap: () {},
+                  ),
+                ),
+              ),
             ],
           ),
         ),
