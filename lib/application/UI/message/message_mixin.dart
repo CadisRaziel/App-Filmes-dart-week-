@@ -50,7 +50,7 @@ extension MessageTypeExtension on MessageType {
       case MessageType.error:
         return Colors.red[200] ?? Colors.red;
       case MessageType.info:
-        return Colors.blue[200] ?? Colors.blue;
+        return Colors.green[300] ?? Colors.green;
     }
   }
 }
