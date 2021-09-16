@@ -22,4 +22,12 @@ class LoginRepositoryImpl implements LoginRepository {
     //*Caso seja nulo lança esse erro
     throw Exception('Error ao realizar o login com o google');
   }
+
+  @override
+  Future<void> logout() async {
+    //*GoogleSignIn -> se eu nao colocar isso, ele desloga mais na hora de logar denovo ele não pede a conta e loga com o utlimo usuario
+    //*Obrigatório por
+    await GoogleSignIn().signOut();
+    FirebaseAuth.instance.signOut();
+  }
 }

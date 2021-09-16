@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vhs_filmes/application/auth/auth_service.dart';
 import 'package:vhs_filmes/repositories/login/login_repository.dart';
 import 'package:vhs_filmes/repositories/login/login_repository_impl.dart';
 import 'package:vhs_filmes/services/login/login_service.dart';
@@ -11,6 +12,9 @@ class AplicationBinding implements Bindings {
     Get.lazyPut<LoginService>(
         () => LoginServiceImpl(loginRepository: Get.find()),
         fenix: true);
+
+    //*quando carregar a aplicação, vai verificar se ta logado ou não
+    Get.put(AuthService()).init();
   }
 }
 
