@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vhs_filmes/modules/favorites/favorites_page.dart.dart';
 import 'package:vhs_filmes/modules/home/home_controller.dart';
+import 'package:vhs_filmes/modules/movies/movie_binding.dart';
 import 'package:vhs_filmes/modules/movies/movie_page.dart.dart';
 import 'package:vhs_filmes/shared/icon/vhs_films_icons.dart';
 import 'package:vhs_filmes/shared/themes/app_color_extension.dart';
@@ -55,6 +56,7 @@ class HomePage extends GetView<HomeController> {
             return GetPageRoute(
               settings: settings,
               page: () => MoviePage(),
+              binding: MovieBinding()
             );
           }
 
