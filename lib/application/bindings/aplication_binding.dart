@@ -3,13 +3,18 @@ import 'package:vhs_filmes/application/auth/auth_service.dart';
 import 'package:vhs_filmes/application/rest_client/rest_client.dart';
 import 'package:vhs_filmes/repositories/login/login_repository.dart';
 import 'package:vhs_filmes/repositories/login/login_repository_impl.dart';
+import 'package:vhs_filmes/repositories/movies/movies_repository.dart';
+import 'package:vhs_filmes/repositories/movies/movies_repository_impl.dart';
 import 'package:vhs_filmes/services/login/login_service.dart';
 import 'package:vhs_filmes/services/login/login_service_impl.dart';
+import 'package:vhs_filmes/services/movies/movies_service.dart';
+import 'package:vhs_filmes/services/movies/movies_service_impl.dart';
 
 class AplicationBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => RestClient());
+    //*Fenix true -> ao clicar em outro icone e voltar para o icone de filmes ele da um erro se não tirar fenix true
+    Get.lazyPut(() => RestClient(),fenix: true);
 
 
     Get.lazyPut<LoginRepository>(() => LoginRepositoryImpl(), fenix: true);
@@ -19,6 +24,13 @@ class AplicationBinding implements Bindings {
 
     //*quando carregar a aplicação, vai verificar se ta logado ou não
     Get.put(AuthService()).init();
+
+
+    //*get.find vai ir atras do restClient criado ali em cima
+    Get.lazyPut<MoviesRepository>(() => MoviesRepositoryImpl(restClient: Get.find()));
+
+    //*Get.find vai ir atras do movieRepository aqui em cima /\
+    Get.lazyPut<MoviesService>(() => MoviesServiceImpl(moviesRepository: Get.find()));
   }
 }
 

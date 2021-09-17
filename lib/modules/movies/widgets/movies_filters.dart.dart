@@ -22,10 +22,13 @@ class MoviesFilters extends GetView<MovieController> {
             return Row(
               children: controller.genresGenero
                   .map(
-                    (genero) => FilterTag(
+                    (genero) => FilterTag( 
                       model: genero,
-                      onPressed: (){},
-                      selected: false,
+                      onPressed: () {
+                        //*Filtro de tags
+                        controller.filterByGenero(genero);
+                      },
+                      selected: controller.genreSelected.value?.id == genero.id,
                     ),
                   )
                   .toList(),

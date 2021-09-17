@@ -1,10 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import 'package:vhs_filmes/models/movie_model.dart';
 import 'package:vhs_filmes/shared/icon/vhs_films_icons.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({Key? key}) : super(key: key);
+  final MovieModel movie;
+
+  //*Formatando data com o package 'intl', vamos adicionar somente o ano
+  final dateFormat = DateFormat('y');
+
+  MovieCard({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +33,19 @@ class MovieCard extends StatelessWidget {
                 elevation: 2,
                 borderRadius: BorderRadius.circular(20),
                 child: ClipRRect(
-              //*ClipRRect -> alternativa ao container para por bordas em fotos etc...
+                  //*ClipRRect -> alternativa ao container para por bordas em fotos etc...
                   borderRadius: BorderRadius.circular(20),
                   //*clipBehavior-> tira o serrilhado da borda
                   clipBehavior: Clip.antiAlias,
-                  child: Image.network(
-                    'https://upload.wikimedia.org/wikipedia/pt/thumb/6/63/Joker_%282019%29.jpg/250px-Joker_%282019%29.jpg',
-                    width: 148,
-                    height: 184,
-                    fit: BoxFit.cover
-                  ),
+                  child: Image.network(movie.posterPath,
+                      width: 148, height: 184, fit: BoxFit.cover),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
               Text(
-                'Coringa',
+                movie.title,
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -49,7 +56,10 @@ class MovieCard extends StatelessWidget {
                 maxLines: 2,
               ),
               Text(
-                '2019',
+                //*fazendo a conversão para aparecer somente o ano
+                dateFormat.format(
+                  DateTime.parse(movie.releaseData),
+                ),
                 style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w300,
@@ -63,7 +73,7 @@ class MovieCard extends StatelessWidget {
             bottom: 70,
             right: -5,
             child: Material(
-          //*Material -> para deixar ele com elevation e com o circulo redondo em volta dele
+              //*Material -> para deixar ele com elevation e com o circulo redondo em volta dele
               elevation: 5,
               shape: CircleBorder(),
               clipBehavior: Clip.antiAlias,

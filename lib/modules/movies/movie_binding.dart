@@ -25,7 +25,8 @@ class MovieBinding implements Bindings {
     //*O get.find vai pegar o service aqui na linha de cima /\
     Get.lazyPut(
       () => MovieController(
-        genreService: Get.find(),
+        genreService: Get.find(),        
+        movieService: Get.find()
       ),
     );
   }
