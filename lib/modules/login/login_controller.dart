@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, unused_field
 
 import 'package:get/get.dart';
-import 'package:vhs_filmes/application/UI/loader/loader_mixin.dart';
-import 'package:vhs_filmes/application/UI/message/message_mixin.dart';
 import 'package:vhs_filmes/services/login/login_service.dart';
+import 'package:vhs_filmes/shared/UI/loader/loader_mixin.dart';
+import 'package:vhs_filmes/shared/UI/message/message_mixin.dart';
 
 
 class LoginController extends GetxController with LoaderMixin, MessageMixin {

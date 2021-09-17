@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vhs_filmes/modules/movies/widgets/movies_filters.dart.dart';
+import 'package:vhs_filmes/modules/movies/widgets/movies_group.dart';
 import 'package:vhs_filmes/modules/movies/widgets/movies_header.dart';
 
 class MoviePage extends StatelessWidget {
@@ -16,7 +17,9 @@ class MoviePage extends StatelessWidget {
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           MoviesHeader(),
-          MoviesFilters()
+          MoviesFilters(),
+          MoviesGroup(title: 'Mais populares',),
+          MoviesGroup(title: 'Top filmes',),
         ],
       ),
     );
