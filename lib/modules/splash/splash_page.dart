@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:vhs_filmes/shared/themes/app_imags.dart';
 
 class SplashPage extends StatelessWidget {
 
  const SplashPage({Key? key}) : super(key: key);
+
+ //*SplashScreen
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class SplashPage extends StatelessWidget {
                 ),
                 fit: BoxFit.cover),
           ),
-          child: Image.asset(AppImages.logo),
+          child: Lottie.asset(AppImages.animacao2),
         ),
       ),
     );

@@ -10,5 +10,7 @@ class SplashBinding implements Bindings {
     //*è importante pois o get vai utilizar o guiche(binding) e se nao tiver utilizando ele tira
     //* (resumindo na hora que ele sair da SplashPage ele vai matar esse guiche para não consumir memoria etc.. porque ele nao precisa mais dela, quem precisa é a SplashPage, outra pagina não)
     Get.put(SplashController());
+
+   
   }
 }
