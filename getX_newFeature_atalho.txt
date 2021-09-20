@@ -1,0 +1,4 @@
+quando voce vai criar uma pasta e precisa criar o controller e o binding, ao clicar com o botão direito temos um atalho
+chamado 'Getx:New Feature' que é a da extensão 'Flutter & Dart utilites' criado pelo rodrigo....
+é muito util e rapido
+tem atalhos rapidos tambem ao digitar 'fu-'

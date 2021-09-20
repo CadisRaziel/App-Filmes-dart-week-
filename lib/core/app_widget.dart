@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:vhs_filmes/application/bindings/aplication_binding.dart';
 import 'package:vhs_filmes/modules/home/home_module.dart';
 import 'package:vhs_filmes/modules/login/login_module.dart';
+import 'package:vhs_filmes/modules/movie_detail/movie_detail_module.dart';
 import 'package:vhs_filmes/modules/splash/splash_module.dart';
 import 'package:vhs_filmes/shared/themes/app_filmes_ui_config.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         ...SplashModule().routers,
         ...LoginModule().routers,
         ...HomeModule().routers,
+        ...MovieDetailModule().routers,
       ],
     );
   }
