@@ -15,12 +15,12 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(           
       //* Deixaremos o bottomNavigationBar observavel com o Obx
       //* Com isso ele vai ficar se rebuildando para ver se tem alteração, porém é somente ele (como definimos no obx)
       bottomNavigationBar: Obx(
         () {
-          return BottomNavigationBar(
+          return BottomNavigationBar(            
             //*selectedItemColor -> quando selecionado vai ter a cor que colocarmos aqui
             //*context.themeRed -> criamos uma classe de extension especial para as cores
             selectedItemColor: context.themeRed,
@@ -31,15 +31,15 @@ class HomePage extends GetView<HomeController> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.local_movies),
-                label: 'Filmes',
+                label: 'Filmes',               
               ),
               BottomNavigationBarItem(
                 icon: Icon(VhsFilms.heart_empty),
-                label: 'Favoritos',
+                label: 'Favoritos',            
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.logout),
-                label: 'Sair',
+                label: 'Sair',                
               )
             ],
           );

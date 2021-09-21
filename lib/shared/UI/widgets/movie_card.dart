@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import 'package:vhs_filmes/models/movie_model.dart';
 import 'package:vhs_filmes/shared/icon/vhs_films_icons.dart';
@@ -46,11 +47,16 @@ class MovieCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     //*clipBehavior-> tira o serrilhado da borda
                     clipBehavior: Clip.antiAlias,
-                    child: Image.network(
+                    //*FadeInImage.memoryNetwork -> deixa uma animação de fade, para que as imagens apareça mais naturalmente !!
+                    //*è utilizando junto com o package 'transparent_image'
+                    //? repare como é facil de utilizar, só coloquei o placeholder ,e a image
+                    child: FadeInImage.memoryNetwork(
+                      //*kTransparentImage -> é do package 'transparent_image'
+                      placeholder: kTransparentImage,
                       //*Como escrevi la no movie_model, precisie concatenar a url aqui !!!
                       //*Se nao o cloud firestore traria a imagem 2x
                       //*Pois ele vai converter em um json e com isso os nomes no movie_model devem ser exatamente iguais a API
-                      'https://image.tmdb.org/t/p/w200${movie.posterPath}',
+                      image: 'https://image.tmdb.org/t/p/w200${movie.posterPath}',                      
                       width: 148,
                       height: 184,
                       fit: BoxFit.cover,

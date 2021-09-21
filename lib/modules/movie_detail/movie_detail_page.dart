@@ -21,7 +21,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
               children: [
                 MovieDetailHeader(
                   movie: controller.movie.value,
-                ),
+                ),                
                 MovieDetailContent(
                   movie: controller.movie.value,
                 ),
