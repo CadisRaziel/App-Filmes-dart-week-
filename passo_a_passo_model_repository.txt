@@ -1,0 +1,2 @@
+primeiro fazemos o model, o que queremos pegar, depois fazemos o repository e depois a interface para ir buscar os dados na api
+e depois de tudo, fazemos o service e depois o service interface

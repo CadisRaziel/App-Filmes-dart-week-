@@ -1,0 +1,22 @@
+mixin (with)
+
+class Animal {}
+class Mamifero {}
+
+repare que podemos ter uma classe com multiplas classes integradas
+
+class Cachorro extends Animal with Mamifero {}
+
+//Criando um mixin
+mixin Late on Mamifero
+
+//porém o mixim funciona da seguinte forma 
+//ele coloca restrições para ele mesmo, o que seria essa restrição: Olhe o exemplo o 'Late' só pode ser utilizado se o 'Animal' for um 'Mamifero'
+//então ele só pode ser utilizados aqui em classe que forem Mamiferos
+//com isso eu poderia fazer isso (cachorro é um mamifero? então eu implemento o 'Late', porém eu preciso por o 'with Mamifero' antes como eu defini)
+class Cachorro extends Animal with Mamifero, Late{}
+
+//*resumindo para utilizar o Late ele precisa obrigatóriamente ter um 'with Mamifero'
+
+
+//*O nome disso é herença multipla

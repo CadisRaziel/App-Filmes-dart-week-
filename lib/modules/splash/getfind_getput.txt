@@ -1,0 +1,12 @@
+
+  //*find -> dessa forma a gente ta indo la no get e pedindo para ele (pois ele esta controlando nossas instancias)
+  //*que ele nos de uma instancia de 'var controller = SplashController();'
+  //*Porém o find não retorna a instancia automaticamente !!!
+  // var controller = Get.find<SplashController>();
+
+  //* Diferente do find o put me retorna uma instancia automaticamente dela
+  // var controller = Get.put(SplashController);
+
+
+  //*Dessa forma estou instanciando minha classe
+  // var controller = SplashController();
