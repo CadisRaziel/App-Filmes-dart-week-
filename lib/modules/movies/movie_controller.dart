@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vhs_filmes/application/auth/auth_service.dart';
 import 'package:vhs_filmes/models/genre_model.dart';
 import 'package:vhs_filmes/models/movie_model.dart';
 import 'package:vhs_filmes/services/genres/genres_service.dart';
@@ -19,6 +20,8 @@ class MovieController extends GetxController with MessageMixin {
   final popularMovies = <MovieModel>[].obs;
   final topRatedMovies = <MovieModel>[].obs;
 
+  final AuthService _authService;
+
   //*Para quando eu clicar em algum genero ele vai carregar uma nova lista com o genero que eu escolher
   //*Isso vai mudar a lista, e quando eu desmarcar ele vai tirar a seleção e voltar pra lista padrao
   //*fazendo isso não preciso ir no backend
@@ -28,11 +31,13 @@ class MovieController extends GetxController with MessageMixin {
   //*Variavel para filtro de generos (vai ser nula por isso o rxn)
   final genreSelected = Rxn<GenreModel>();
 
-  MovieController({
-    required GenresService genreService,
-    required MoviesService movieService,
-  })  : _genresService = genreService,
-        _moviesService = movieService;
+  MovieController(
+      {required GenresService genreService,
+      required MoviesService movieService,
+      required AuthService authService})
+      : _genresService = genreService,
+        _moviesService = movieService,
+        _authService = authService;
 
   //*Para ficar escutando as alterações (caso tenha erro)
   @override
@@ -51,9 +56,45 @@ class MovieController extends GetxController with MessageMixin {
       //*assignAll -> Busca todos os dados e vai sobrescever tudo que estiver na lista
       genresGenero.assignAll(genres);
 
+      await getMovies();
+    } catch (e, s) {
+      print(e);
+      print(s);
+      //*Caso ocorra um erro...
+      _message(MessageModel.error(
+          title: 'Erro', message: 'Erro ao carregar dados da página'));
+    }
+  }
+
+  Future<void> getMovies() async {
+    try {
       //*fazendo a busca dos movies
-      final popularMoviesData = await _moviesService.getPopularMovies();
-      final topRatedMoviesData = await _moviesService.getTopRatedMovies();
+      var popularMoviesData = await _moviesService.getPopularMovies();
+      var topRatedMoviesData = await _moviesService.getTopRatedMovies();
+
+      final favorites = await getFavorites();
+
+      //*Loop para ver se precisa transformar em true ou não
+      popularMoviesData = popularMoviesData.map((movie) {
+        if(favorites.containsKey(movie.id)) {
+          //*se tiver a key movie.id, eu vou retornar o favorite para true
+          return movie.copyWith(favorite: true);
+        }else {
+          //*se não
+          return movie.copyWith(favorite: false);
+        }
+      }).toList();
+      //*Loop para ver se precisa transformar em true ou não
+      topRatedMoviesData = topRatedMoviesData.map((movie) {
+        if(favorites.containsKey(movie.id)) {
+          //*se tiver a key movie.id, eu vou retornar o favorite para true
+          return movie.copyWith(favorite: true);
+        }else {
+          //*se não
+          return movie.copyWith(favorite: false);
+        }
+      }).toList();
+
       popularMovies.assignAll(popularMoviesData);
       _popularMoviesOriginal = popularMoviesData;
 
@@ -94,7 +135,7 @@ class MovieController extends GetxController with MessageMixin {
   //*Criando filtro pelas tags
   void filterByGenero(GenreModel? genreModel) {
     //*Se eu clicar no genero ele seleciona, porém se eu clicar denovo no mesmo genero ele desmarca ele
-   
+
     if (genreModel?.id == genreSelected.value?.id) {
       //*se ja estiver selecionado
       genreModel = null;
@@ -116,5 +157,35 @@ class MovieController extends GetxController with MessageMixin {
       popularMovies.assignAll(_popularMoviesOriginal);
       topRatedMovies.assignAll(_topRatedMoviesOriginal);
     }
+  }
+
+  Future<void> favoriteMovies(MovieModel movie) async {
+    //*inicialmente precisamos pegar o usuario logado
+    final user = _authService.user;
+    if (user != null) {
+      //*Utilizando o copyWith eu consigo pega apenas o valor que eu quero, e como la na 'movie_model' ele vem como true
+      //*aqui eu coloco como false adicionando o '!'
+      var newMovie = movie.copyWith(favorite: !movie.favorite);
+      await _moviesService.addOrRemoveFavorite(user.uid, newMovie);
+
+      //*e ai atualizamos nossa lista
+      //*Para o coração mudar de cor
+      await getMovies();
+    }
+  }
+
+  //*Buscar os dados
+  //*Aqui eu vo pegar todos os meus movies e pegar o id deles,
+  //*porque, teremos varios e varios filmes, e com isso vai verificar se tal filme ja esta no favotiros
+  Future<Map<int, MovieModel>> getFavorites() async {
+    var user = _authService.user;
+    if (user != null) {
+      final favorites = await _moviesService.getFavoritiesMovie(user.uid);
+      return <int, MovieModel>{
+        //*aqui vai me gerar um map de chave e valor
+        for (var fav in favorites) fav.id: fav,
+      };
+    }
+    return {};
   }
 }

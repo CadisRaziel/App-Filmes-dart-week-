@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:vhs_filmes/models/movie_model.dart';
+import 'package:vhs_filmes/modules/movies/movie_controller.dart';
 import 'package:vhs_filmes/shared/UI/widgets/movie_card.dart';
 
-class MoviesGroup extends StatelessWidget {
+class MoviesGroup extends GetView<MovieController> {
   final String title;
   final List<MovieModel> movies;
 
@@ -43,8 +45,10 @@ class MoviesGroup extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: movies.length,
                   itemBuilder: (context, index) {
+                    var movie = movies[index];
                     return MovieCard(
-                      movie: movies[index],
+                      movie: movie,
+                      favoriteCallBack: () => controller.favoriteMovies(movie),
                     );
                   },
                 );

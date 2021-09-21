@@ -26,8 +26,11 @@ class MovieBinding implements Bindings {
     Get.lazyPut(
       () => MovieController(
         genreService: Get.find(),        
-        movieService: Get.find()
+        movieService: Get.find(),
+        authService: Get.find()
       ),
     );
+
+    //*authService -> esta adicionado la no aplication_bindings
   }
 }

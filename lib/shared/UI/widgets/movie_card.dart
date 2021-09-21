@@ -6,28 +6,27 @@ import 'package:intl/intl.dart';
 
 import 'package:vhs_filmes/models/movie_model.dart';
 import 'package:vhs_filmes/shared/icon/vhs_films_icons.dart';
+import 'package:vhs_filmes/shared/themes/app_color_extension.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieModel movie;
 
+  final VoidCallback favoriteCallBack;
+
   //*Formatando data com o package 'intl', vamos adicionar somente o ano
   final dateFormat = DateFormat('y');
 
-  MovieCard({
-    Key? key,
-    required this.movie,
-  }) : super(key: key);
+  MovieCard({Key? key, required this.movie, required this.favoriteCallBack})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(
-          '/movie/detail',
-          //*Argumento para pegar os detalhes do movie em que clicar (ou seja ele ao clicar no filme
-          //* ele vai buscar o id dele e apresentar ja na proxima tela as caracteristicas que eu definir)
-          arguments: movie.id
-        );
+        Get.toNamed('/movie/detail',
+            //*Argumento para pegar os detalhes do movie em que clicar (ou seja ele ao clicar no filme
+            //* ele vai buscar o id dele e apresentar ja na proxima tela as caracteristicas que eu definir)
+            arguments: movie.id);
       },
       child: Container(
         padding: EdgeInsets.all(10),
@@ -47,8 +46,15 @@ class MovieCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     //*clipBehavior-> tira o serrilhado da borda
                     clipBehavior: Clip.antiAlias,
-                    child: Image.network(movie.posterPath,
-                        width: 148, height: 184, fit: BoxFit.cover),
+                    child: Image.network(
+                      //*Como escrevi la no movie_model, precisie concatenar a url aqui !!!
+                      //*Se nao o cloud firestore traria a imagem 2x
+                      //*Pois ele vai converter em um json e com isso os nomes no movie_model devem ser exatamente iguais a API
+                      'https://image.tmdb.org/t/p/w200${movie.posterPath}',
+                      width: 148,
+                      height: 184,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -88,15 +94,17 @@ class MovieCard extends StatelessWidget {
                 shape: CircleBorder(),
                 clipBehavior: Clip.antiAlias,
                 child: SizedBox(
-                    height: 30,
-                    child: IconButton(
-                      iconSize: 13,
-                      icon: Icon(
-                        VhsFilms.heart_empty,
-                        color: Colors.grey,
-                      ),
-                      onPressed: () {},
-                    )),
+                  height: 30,
+                  child: IconButton(
+                    iconSize: 13,
+                    icon: Icon(
+                      movie.favorite ? VhsFilms.heart : VhsFilms.heart_empty,
+                      color:
+                          movie.favorite ? context.themeRed : context.themeGrey,
+                    ),
+                    onPressed: favoriteCallBack,
+                  ),
+                ),
               ),
             )
           ],

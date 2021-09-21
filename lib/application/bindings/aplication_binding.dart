@@ -11,6 +11,7 @@ import 'package:vhs_filmes/services/movies/movies_service.dart';
 import 'package:vhs_filmes/services/movies/movies_service_impl.dart';
 
 class AplicationBinding implements Bindings {
+  //? Tudo que tem aqui nesse binding que é global, deve ser fenix, com exeção do AuthService... (tudo que for LazyPut !!)
   @override
   void dependencies() {
     //*Fenix true -> ao clicar em outro icone e voltar para o icone de filmes ele da um erro se não tirar fenix true

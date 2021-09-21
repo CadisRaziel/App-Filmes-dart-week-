@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 //*Para pegar a imagem da api é necessario por uma url antes
 //*w200 -> imagem menor
 //*w500 -> imagem maior
@@ -49,8 +48,12 @@ class MovieModel {
       id: map['id'] ?? 0,
       title: map['title'] ?? '',
       releaseData: map['release_date'] ?? '',
+      //*Antes eu precisie concatenar essa url com o poster_path, porém ao adicionar o cloud firestore iria dar um erro
+      //*Pois a imagem seria chamada 2x para isso tivemos que colocar o 'map['poster_paht'] normal
+      //*e la no movie_card eu concateno a url (va para movie_card para ver)
       //*aqui estamos concatenando a url como diz na documentação !!
-      posterPath: 'https://image.tmdb.org/t/p/w200/${map['poster_path']}',
+      // posterPath: 'https://image.tmdb.org/t/p/w200/${map['poster_path']}',
+      posterPath: map['poster_path'],
       genres: List<int>.from(map['genre_ids'] ?? const []),
       favorite: map['favorite'] ?? false,
     );
@@ -59,4 +62,26 @@ class MovieModel {
   String toJson() => json.encode(toMap());
 
   factory MovieModel.fromJson(String source) => MovieModel.fromMap(json.decode(source));
+
+
+  //*Em movie_controller eu nao posso colocar 'movie.favorite = true;' pois la é imutavel
+  //*Precisei adicionar o copyWith aqui 
+  //*copyWith -> pega todos os nossos dados que estão em instancia e altera somente aquele que eu quero que seja alterado
+  MovieModel copyWith({
+    int? id,
+    String? title,
+    String? releaseData,
+    String? posterPath,
+    List<int>? genres,
+    bool? favorite,
+  }) {
+    return MovieModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      releaseData: releaseData ?? this.releaseData,
+      posterPath: posterPath ?? this.posterPath,
+      genres: genres ?? this.genres,
+      favorite: favorite ?? this.favorite,
+    );
+  }
 }
