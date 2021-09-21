@@ -14,7 +14,7 @@ class MoviePage extends GetView<MovieController> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: Get.width,
-      child: ListView(
+      child: ListView(        
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           MoviesHeader(),

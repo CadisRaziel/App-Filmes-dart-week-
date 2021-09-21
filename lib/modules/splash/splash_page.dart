@@ -27,7 +27,7 @@ class SplashPage extends StatelessWidget {
                 ),
                 fit: BoxFit.cover),
           ),
-          child: Lottie.asset(AppImages.animacao2),
+          child: Lottie.asset(AppImages.animacao2,),
         ),
       ),
     );

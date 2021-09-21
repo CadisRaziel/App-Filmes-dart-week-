@@ -19,7 +19,7 @@ class MoviesGroup extends GetView<MovieController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,6 +35,7 @@ class MoviesGroup extends GetView<MovieController> {
           ),
           SizedBox(
               //*Para que o tamanho da listView seja 280
+              //*Movimenta o icone de favoritos
               height: 280,
               //*Obs pois ela vai fica atualizando !
               child: Obx(() {

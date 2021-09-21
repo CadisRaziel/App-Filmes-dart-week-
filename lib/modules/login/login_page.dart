@@ -15,7 +15,7 @@ class LoginPage extends GetView<LoginController> {
     return Scaffold(
       body: Stack(
         //* alignment to dizendo que a toda a stack vai ter o alignment
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
         children: [
           //*Adicionando a imagem de fundo
           Image.asset(
@@ -25,10 +25,10 @@ class LoginPage extends GetView<LoginController> {
             fit: BoxFit.cover,
           ),
           //*Adicionando um sombreamento por cima da imagem
-          Container(color: Colors.black.withOpacity(0.6)),
+          Container(color: Colors.black.withOpacity(0.2)),
           //*Adicionando o logo
           Padding(
-            padding: const EdgeInsets.only(top: 80),
+            padding: const EdgeInsets.only(top: 300),
             child: Column(
               //* colocamos um Column para que ao colocar o botão ele não fica acima do logo (por conta do alignment que colocamos na stack)
               //* com o column o botao vai ficar em baixo do logo
