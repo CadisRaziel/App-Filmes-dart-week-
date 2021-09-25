@@ -14,9 +14,7 @@ class LoginRepositoryImpl implements LoginRepository {
 
     if (googleAuth != null) {
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken
-      );
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
       return FirebaseAuth.instance.signInWithCredential(credential);
     }
@@ -34,13 +32,19 @@ class LoginRepositoryImpl implements LoginRepository {
 
   @override
   Future<UserCredential> loginFacebook() async {
+    print('antes do await');
+
     // Trigger the sign-in flow
-  final LoginResult loginResult = await FacebookAuth.instance.login();
+    final LoginResult loginResult = await FacebookAuth.instance
+        .login(permissions: ["public_profile", "email"]);
 
-  // Create a credential from the access token
-  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    print(loginResult.message);
+    print(loginResult.status);
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
-  // Once signed in, return the UserCredential
-  return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 }
