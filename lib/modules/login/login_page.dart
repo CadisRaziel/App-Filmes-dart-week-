@@ -48,7 +48,7 @@ class LoginPage extends GetView<LoginController> {
                   height: 42,
                   child: SignInButton(
                     Buttons.Google,
-                    onPressed: () => controller.login(),
+                    onPressed: () => controller.loginGoogle(),
                     text: 'Entrar com o google',
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
@@ -63,7 +63,9 @@ class LoginPage extends GetView<LoginController> {
                   height: 42,
                   child: SignInButton(
                     Buttons.Facebook,
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.loginFacebook();
+                    },
                     text: 'Entrar com o facebook',
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),

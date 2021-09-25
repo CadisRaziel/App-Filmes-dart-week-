@@ -25,10 +25,27 @@ class LoginController extends GetxController with LoaderMixin, MessageMixin {
     messageListener(message);
   }
 
-  Future<void> login() async {
+  Future<void> loginGoogle() async {
     try {
       loading(true);
-      await _loginService.login();
+      await _loginService.loginGoogle();
+      loading(false);
+      message(
+        MessageModel.info(title: 'Sucesso', message: 'Login realizado com sucesso'));
+    } catch (e, s) {
+      //* s -> vai mostrar toda a tragetória do dart
+      print(e);
+      print(s);
+      loading(false);
+      message(
+        MessageModel.error(title: 'Erro', message: 'Erro ao realizar o login'));
+    }
+  }
+
+  Future<void> loginFacebook() async {
+    try {
+      loading(true);
+      await _loginService.loginFacebook();
       loading(false);
       message(
         MessageModel.info(title: 'Sucesso', message: 'Login realizado com sucesso'));

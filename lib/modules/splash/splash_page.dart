@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vhs_filmes/shared/themes/app_imags.dart';
 
+
 class SplashPage extends StatelessWidget {
 
  const SplashPage({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class SplashPage extends StatelessWidget {
                 fit: BoxFit.cover),
           ),
           child: Lottie.asset(AppImages.animacao2,),
+          // child: RiveAnimation.network(AppImages.animacao3)
         ),
       ),
     );
