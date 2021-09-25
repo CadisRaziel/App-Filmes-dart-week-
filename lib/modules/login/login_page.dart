@@ -64,7 +64,7 @@ class LoginPage extends GetView<LoginController> {
                   child: SignInButton(
                     Buttons.Facebook,
                     onPressed: () {
-                      controller.loginFacebook();
+                      controller.loginFacebook();                      
                     },
                     text: 'Entrar com o facebook',
                     shape: RoundedRectangleBorder(
