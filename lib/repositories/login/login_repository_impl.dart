@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import './login_repository.dart';
@@ -7,7 +8,7 @@ import './login_repository.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   @override
-  Future<UserCredential> login() async {
+  Future<UserCredential> loginGoogle() async {
     final googleUser = await GoogleSignIn().signIn();
     final googleAuth = await googleUser?.authentication;
 
@@ -29,5 +30,17 @@ class LoginRepositoryImpl implements LoginRepository {
     //*Obrigatório por
     await GoogleSignIn().signOut();
     FirebaseAuth.instance.signOut();
+  }
+
+  @override
+  Future<UserCredential> loginFacebook() async {
+    // Trigger the sign-in flow
+  final LoginResult loginResult = await FacebookAuth.instance.login();
+
+  // Create a credential from the access token
+  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+  // Once signed in, return the UserCredential
+  return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 }
