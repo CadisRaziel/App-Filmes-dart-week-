@@ -5,5 +5,6 @@ abstract class LoginRepository {
   Future<UserCredential> loginGoogle();
   Future<UserCredential> loginFacebook();
 
-  Future<void> logout();
+  Future<void> logoutGoogle();
+  Future<void> logoutFacebook();
 }

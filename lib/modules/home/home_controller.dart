@@ -26,9 +26,11 @@ class HomeController extends GetxController {
   void goToPage(int page) {
     _pageIndex(page);
     if(page == INDEX_PAGE_EXIT) {
-      _loginService.logout();
-    } else  {
-      //*e aqui passamos o indice para ele
+       _loginService.logoutFacebook();
+    } else if(page == INDEX_PAGE_EXIT) {
+      _loginService.logoutFacebook();    
+    } else {
+        //*e aqui passamos o indice para ele
       Get.offNamed(_pages[page], id: NAVIGATOR_KEY);
     }
   }

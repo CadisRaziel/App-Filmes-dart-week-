@@ -17,10 +17,13 @@ class LoginServiceImpl implements LoginService {
   Future<UserCredential> loginGoogle() => _loginRepository.loginGoogle();
 
   @override
-  Future<void> logout() => _loginRepository.logout();
+  Future<void> logoutGoogle() => _loginRepository.logoutGoogle();
 
   @override
   Future<UserCredential> loginFacebook() => _loginRepository.loginFacebook();
+
+  @override
+  Future<void> logoutFacebook() => _loginRepository.logoutFacebook();
 
  
 }
