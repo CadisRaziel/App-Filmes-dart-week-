@@ -34,3 +34,7 @@ class MainActivity: FlutterActivity() {
     }
 }
 
+//* antes de colocar esse código abaixo no terminal, crie a função acima /\ 
+//* Código Para pegar a hash no linux !!
+//adb logcat -s MainActivity
+//*Lembre-se precisa ter um emulador conectado
